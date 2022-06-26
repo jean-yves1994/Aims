@@ -1,11 +1,11 @@
 import 'package:aims/ui/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:aims/const/AppColors.dart';
+import 'package:aims/const/appColors.dart';
 import 'package:aims/widgets/customButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import 'bottom_nav_controller.dart';
+import 'homeScreen.dart';
 
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);

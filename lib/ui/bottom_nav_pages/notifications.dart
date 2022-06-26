@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-import '../../const/AppColors.dart';
+import '../../const/appColors.dart';
 import '../Drawer/navigation_drawer.dart';
 
 class Notifications extends StatefulWidget {

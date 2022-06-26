@@ -75,8 +75,10 @@ class NavigationDrawer extends StatelessWidget {
             MaterialPageRoute(builder: (context) => const RegisterScreen()));
         break;
       case 2:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()));
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()),
+            (route) => false);
         break;
     }
   }

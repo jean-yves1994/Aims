@@ -1,4 +1,4 @@
-import 'package:aims/const/AppColors.dart';
+import 'package:aims/const/appColors.dart';
 import 'package:aims/ui/Drawer/navigation_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';

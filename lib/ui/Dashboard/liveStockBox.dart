@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../const/AppColors.dart';
+import '../../const/appColors.dart';
 
 class LiveStockBox extends StatefulWidget {
   const LiveStockBox({Key? key}) : super(key: key);

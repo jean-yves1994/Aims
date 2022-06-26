@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../const/AppColors.dart';
+import '../../const/appColors.dart';
 
 class LandBox extends StatefulWidget {
   const LandBox({Key? key}) : super(key: key);

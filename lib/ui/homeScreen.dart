@@ -1,7 +1,7 @@
 import 'package:aims/ui/bottom_nav_pages/notifications.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:aims/const/AppColors.dart';
+import 'package:aims/const/appColors.dart';
 import 'package:aims/ui/bottom_nav_pages/home.dart';
 import 'package:aims/ui/bottom_nav_pages/addNew.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';

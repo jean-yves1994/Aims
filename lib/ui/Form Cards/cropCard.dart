@@ -1,4 +1,4 @@
-import 'package:aims/const/AppColors.dart';
+import 'package:aims/const/appColors.dart';
 import 'package:flutter/material.dart';
 
 class CardListBox extends StatelessWidget {

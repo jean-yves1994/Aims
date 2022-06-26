@@ -2,7 +2,7 @@ import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
-import '../../const/AppColors.dart';
+import '../../const/appColors.dart';
 
 class WaterBox extends StatefulWidget {
   const WaterBox({Key? key}) : super(key: key);
