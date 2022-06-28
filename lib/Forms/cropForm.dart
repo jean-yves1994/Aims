@@ -361,25 +361,6 @@ class _CropInfoScreen extends State<CropInfoScreen> {
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Crop Name',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
                           ],
                         ),
 

@@ -1,6 +1,6 @@
 import 'package:aims/ui/bottom_nav_pages/home.dart';
 import 'package:aims/ui/login_screen.dart';
-import 'package:aims/ui/resiterPage.dart';
+import 'package:aims/ui/registerPage.dart';
 import 'package:flutter/material.dart';
 
 import 'drawer_item.dart';

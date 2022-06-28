@@ -265,7 +265,7 @@ class HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Projects",
+                              "Ha",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
@@ -273,7 +273,7 @@ class HomeState extends State<Home> {
                               height: 5,
                             ),
                             Text(
-                              "8 this month",
+                              "Area",
                               style: TextStyle(
                                   fontSize: 13, color: Colors.blueGrey[500]),
                             ),
@@ -294,7 +294,7 @@ class HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
-                          "mobile App",
+                          "320",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 10),
                         ),
@@ -307,7 +307,7 @@ class HomeState extends State<Home> {
                           borderRadius: BorderRadius.circular(10),
                         ),
                         child: Text(
-                          "branding",
+                          "Kg Seeds",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 10),
                         ),
@@ -353,7 +353,7 @@ class HomeState extends State<Home> {
                   Padding(
                     padding: const EdgeInsets.only(right: 5),
                     child: Text(
-                      "103",
+                      "1.3",
                       style: TextStyle(
                           fontSize: 26,
                           color: Colors.white,
@@ -361,7 +361,7 @@ class HomeState extends State<Home> {
                     ),
                   ),
                   Text(
-                    "Kg",
+                    "m3",
                     style: TextStyle(fontSize: 13, color: Colors.white),
                   ),
                 ],
@@ -370,7 +370,7 @@ class HomeState extends State<Home> {
                 padding: EdgeInsets.all(10),
                 margin: EdgeInsets.only(top: 20),
                 child: Text(
-                  "Used fertilizer",
+                  " Water Tank",
                   style: TextStyle(
                       color: Colors.white,
                       fontSize: 10,
@@ -400,7 +400,7 @@ class HomeState extends State<Home> {
                         color: Color(0xff375BE9)),
                     child: Center(
                       child: Text(
-                        "8",
+                        "13",
                         textAlign: TextAlign.left,
                         style: TextStyle(
                             color: Colors.white,
@@ -416,7 +416,7 @@ class HomeState extends State<Home> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Tones",
+                        "m3",
                         style: TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16),
                       ),
@@ -424,7 +424,7 @@ class HomeState extends State<Home> {
                         height: 5,
                       ),
                       Text(
-                        "Crop production",
+                        "Supplied",
                         style: TextStyle(
                             fontSize: 13, color: Colors.blueGrey[500]),
                       ),
@@ -453,7 +453,7 @@ class HomeState extends State<Home> {
                               color: Color(0xff375BE9)),
                           child: Center(
                             child: Text(
-                              "32",
+                              "1.3",
                               textAlign: TextAlign.center,
                               style: TextStyle(
                                 color: Colors.white,
@@ -470,7 +470,7 @@ class HomeState extends State<Home> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Projects",
+                              "Ha",
                               style: TextStyle(
                                   fontWeight: FontWeight.bold, fontSize: 16),
                             ),
@@ -478,7 +478,7 @@ class HomeState extends State<Home> {
                               height: 5,
                             ),
                             Text(
-                              "8 this month",
+                              "Used on",
                               style: TextStyle(
                                   fontSize: 13, color: Colors.blueGrey[500]),
                             ),

@@ -4,17 +4,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../ui/bottom_nav_pages/addNew.dart';
-import '../widgets/customButton.dart';
+import '../../widgets/customButton.dart';
 
-class WaterFormScreen extends StatefulWidget {
-  const WaterFormScreen({Key? key}) : super(key: key);
+class WaterDamsFormScreen extends StatefulWidget {
+  const WaterDamsFormScreen({Key? key}) : super(key: key);
 
   @override
-  State<WaterFormScreen> createState() => _WaterFormScreen();
+  State<WaterDamsFormScreen> createState() => _WaterDamsFormScreen();
 }
 
-class _WaterFormScreen extends State<WaterFormScreen> {
+class _WaterDamsFormScreen extends State<WaterDamsFormScreen> {
   late double height, width;
   @override
   Widget build(BuildContext context) {
@@ -32,7 +31,7 @@ class _WaterFormScreen extends State<WaterFormScreen> {
               bottom: Radius.circular(30),
             ),
           ),
-          title: const Text('Water Information'),
+          title: const Text('Water Dams Information'),
           centerTitle: true,
           backgroundColor: AppColors.myGreen,
           elevation: 7,
@@ -90,9 +89,7 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                                           fontSize: 14.sp,
                                           color: const Color(0xFF414041),
                                         ), */
-                                        labelText: 'Select Season',
-                                        suffixIcon: Icon(Icons.arrow_drop_down,
-                                            size: 24),
+                                        labelText: 'Dam Name',
                                         labelStyle: TextStyle(
                                           fontSize: 15.sp,
                                           color: AppColors.myGreen,
@@ -111,9 +108,7 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                                           fontSize: 14.sp,
                                           color: const Color(0xFF414041),
                                         ),
-                                        labelText: 'Select ward',
-                                        suffixIcon: Icon(Icons.arrow_drop_down,
-                                            size: 24),
+                                        labelText: 'Nearest Locale',
                                         labelStyle: TextStyle(
                                           fontSize: 15.sp,
                                           color: AppColors.myGreen,
@@ -126,18 +121,7 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 20),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Text('Water Information',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20)),
-                            ],
-                          ),
-                        ),
+
                         Row(
                           children: [
                             Expanded(
@@ -150,9 +134,7 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                                         fontSize: 14.sp,
                                         color: const Color(0xFF414041),
                                       ), */
-                                    labelText: 'Source Name',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
+                                    labelText: 'Completed year',
                                     labelStyle: TextStyle(
                                       fontSize: 15.sp,
                                       color: AppColors.myGreen,
@@ -171,7 +153,7 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                                       fontSize: 14.sp,
                                       color: const Color(0xFF414041),
                                     ),
-                                    labelText: 'Source Type',
+                                    labelText: 'Capacity',
                                     labelStyle: TextStyle(
                                       fontSize: 15.sp,
                                       color: AppColors.myGreen,
@@ -195,7 +177,9 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                                       fontSize: 14.sp,
                                       color: const Color(0xFF414041),
                                     ), */
-                                    labelText: 'Quantity',
+                                    labelText: 'Province',
+                                    suffixIcon:
+                                        Icon(Icons.arrow_drop_down, size: 24),
                                     labelStyle: TextStyle(
                                       fontSize: 15.sp,
                                       color: AppColors.myGreen,
@@ -214,7 +198,7 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                                       fontSize: 14.sp,
                                       color: const Color(0xFF414041),
                                     ),
-                                    labelText: 'Select District',
+                                    labelText: 'Usage',
                                     suffixIcon:
                                         Icon(Icons.arrow_drop_down, size: 24),
                                     labelStyle: TextStyle(
@@ -227,17 +211,90 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10),
-                        Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: Row(
-                            children: [
-                              Text('Records about water tanks',
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.w400,
-                                      fontSize: 20)),
-                            ],
-                          ),
+
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextField(
+                                  //controller: _emailController,
+                                  decoration: InputDecoration(
+                                    /* hintStyle: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: const Color(0xFF414041),
+                                    ), */
+                                    labelText: 'Impounds',
+                                    labelStyle: TextStyle(
+                                      fontSize: 15.sp,
+                                      color: AppColors.myGreen,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextField(
+                                  // controller: _passwordController,
+                                  decoration: InputDecoration(
+                                    hintStyle: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: const Color(0xFF414041),
+                                    ),
+                                    labelText: 'Latitude',
+                                    labelStyle: TextStyle(
+                                      fontSize: 15.sp,
+                                      color: AppColors.myGreen,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                         Row(
+                          children: [
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextField(
+                                  //controller: _emailController,
+                                  decoration: InputDecoration(
+                                    /* hintStyle: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: const Color(0xFF414041),
+                                    ), */
+                                    labelText: 'Height',
+                                    labelStyle: TextStyle(
+                                      fontSize: 15.sp,
+                                      color: AppColors.myGreen,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: TextField(
+                                  // controller: _passwordController,
+                                  decoration: InputDecoration(
+                                    hintStyle: TextStyle(
+                                      fontSize: 14.sp,
+                                      color: const Color(0xFF414041),
+                                    ),
+                                    labelText: 'Longitute',
+                                    labelStyle: TextStyle(
+                                      fontSize: 15.sp,
+                                      color: AppColors.myGreen,
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ],
                         ),
                         Row(
                           children: [
@@ -251,9 +308,7 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                                       fontSize: 14.sp,
                                       color: const Color(0xFF414041),
                                     ), */
-                                    labelText: 'District',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
+                                    labelText: 'Area',
                                     labelStyle: TextStyle(
                                       fontSize: 15.sp,
                                       color: AppColors.myGreen,
@@ -262,28 +317,9 @@ class _WaterFormScreen extends State<WaterFormScreen> {
                                 ),
                               ),
                             ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Quantity',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
+                         
                           ],
                         ),
-
                         SizedBox(
                           height: 15.h,
                         ),

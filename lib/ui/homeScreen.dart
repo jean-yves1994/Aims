@@ -40,42 +40,5 @@ class BottomNavControllerState extends State<BottomNavController> {
       ),
       body: _pages[_currentIndex],
     );
-    /* return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        elevation: 5,
-        selectedItemColor: const Color.fromARGB(252, 61, 110, 216),
-        backgroundColor: Colors.white,
-        unselectedItemColor: AppColors.myGreen,
-        currentIndex: _currentIndex,
-        selectedLabelStyle:
-            const TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Align(
-                alignment: Alignment.center, child: Icon(size: 30, Icons.home)),
-            label: 'Dashboard',
-          ),
-          BottomNavigationBarItem(
-              icon: Align(
-                  alignment: Alignment.center,
-                  child: Icon(size: 30, Icons.add_box_rounded)),
-              label: 'Modals'),
-          BottomNavigationBarItem(
-            icon: Align(
-                alignment: Alignment.center,
-                child: Icon(size: 30, Icons.notification_add_rounded)),
-            label: 'Notification',
-          ),
-        ],
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-      ),
-
-      
-      body: _pages[_currentIndex],
-    ); */
   }
 }

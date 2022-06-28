@@ -26,7 +26,10 @@ class _NotificationsState extends State<Notifications> {
               bottom: Radius.circular(30),
             ),
           ),
-          title: Text('Notifications',style: TextStyle(fontFamily: 'MontSerrat'),),
+          title: Text(
+            'Notifications',
+            style: TextStyle(fontFamily: 'MontSerrat'),
+          ),
           centerTitle: true,
           backgroundColor: AppColors.myGreen,
           elevation: 20,
@@ -58,10 +61,11 @@ class _NotificationsState extends State<Notifications> {
               height: 95,
               child: Stack(
                 children: [
-                  Container(
-                    height: 90,
-                    child: ListTile(
-                      isThreeLine: false,
+                  ListView(children: [
+                    ListTile(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                      tileColor: AppColors.myGreen.withOpacity(0.2),
                       title: Text(
                         'New meeting at Muhabura sector',
                         style: TextStyle(
@@ -70,264 +74,27 @@ class _NotificationsState extends State<Notifications> {
                             color: AppColors.myGreen),
                       ),
                       subtitle: Text(
-                          'This is a crop tile description is a crop tile description is a crop tile description lorem ipsum is a crop tile description ',
+                          'This jksghfgdshfdshfsjfgjdgsjgfksdgfkjsdkfgdskjfkdgskfksdgfkgdskgfkgsdskfsdgfis a crop tile description is a crop tile description is a crop tile description lorem ipsum is a crop tile description ',
                           style: TextStyle(
                               fontSize: 12, fontWeight: FontWeight.w400)),
+                      isThreeLine: true,
                       trailing: const CircleAvatar(
                         radius: 40,
                         backgroundImage: NetworkImage(
                             'https://cdn-icons-png.flaticon.com/512/265/265674.png'),
                       ),
                     ),
-                    width: width * 0.95,
+                  ]),
+                  /* width: width * 0.95,
                     decoration: BoxDecoration(
                         color: AppColors.myGreen.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
+                        borderRadius: BorderRadius.circular(10)), */
                 ],
               ),
             ),
           ),
           SizedBox(
-            height: 1,
-          ),
-          GestureDetector(
-            onTap: () {
-              print('Taped');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 95,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 90,
-                    child: ListTile(
-                      isThreeLine: false,
-                      title: Text(
-                        'New meeting at Muhabura sector',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.myGreen),
-                      ),
-                      subtitle: Text(
-                          'This is a crop tile description is a crop tile description is a crop tile description lorem ipsum is a crop tile description ',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w400)),
-                      trailing: const CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/265/265674.png'),
-                      ),
-                    ),
-                    width: width * 0.95,
-                    decoration: BoxDecoration(
-                        color: AppColors.myGreen.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 1,),
-          GestureDetector(
-            onTap: () {
-              print('Taped');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 95,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 90,
-                    child: ListTile(
-                      isThreeLine: false,
-                      title: Text(
-                        'New meeting at Muhabura sector',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.myGreen),
-                      ),
-                      subtitle: Text(
-                          'This is a crop tile description is a crop tile description is a crop tile description lorem ipsum is a crop tile description ',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w400)),
-                      trailing: const CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/265/265674.png'),
-                      ),
-                    ),
-                    width: width * 0.95,
-                    decoration: BoxDecoration(
-                        color: AppColors.myGreen.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 1,),
-          GestureDetector(
-            onTap: () {
-              print('Taped');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 95,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 90,
-                    child: ListTile(
-                      isThreeLine: false,
-                      title: Text(
-                        'New meeting at Muhabura sector',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.myGreen),
-                      ),
-                      subtitle: Text(
-                          'This is a crop tile description is a crop tile description is a crop tile description lorem ipsum is a crop tile description ',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w400)),
-                      trailing: const CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/265/265674.png'),
-                      ),
-                    ),
-                    width: width * 0.95,
-                    decoration: BoxDecoration(
-                        color: AppColors.myGreen.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 1,),
-          GestureDetector(
-            onTap: () {
-              print('Taped');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 95,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 90,
-                    child: ListTile(
-                      isThreeLine: false,
-                      title: Text(
-                        'New meeting at Muhabura sector',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.myGreen),
-                      ),
-                      subtitle: Text(
-                          'This is a crop tile description is a crop tile description is a crop tile description lorem ipsum is a crop tile description ',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w400)),
-                      trailing: const CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/265/265674.png'),
-                      ),
-                    ),
-                    width: width * 0.95,
-                    decoration: BoxDecoration(
-                        color: AppColors.myGreen.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          SizedBox(height: 1,),
-          GestureDetector(
-            onTap: () {
-              print('Taped');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 95,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 90,
-                    child: ListTile(
-                      isThreeLine: false,
-                      title: Text(
-                        'New meeting at Muhabura sector',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.myGreen),
-                      ),
-                      subtitle: Text(
-                          'This is a crop tile description is a crop tile description is a crop tile description lorem ipsum is a crop tile description ',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w400)),
-                      trailing: const CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/265/265674.png'),
-                      ),
-                    ),
-                    width: width * 0.95,
-                    decoration: BoxDecoration(
-                        color: AppColors.myGreen.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                ],
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              print('Taped');
-            },
-            child: Container(
-              padding: EdgeInsets.all(10),
-              height: 95,
-              child: Stack(
-                children: [
-                  Container(
-                    height: 90,
-                    child: ListTile(
-                      isThreeLine: false,
-                      title: Text(
-                        'New meeting at Muhabura sector',
-                        style: TextStyle(
-                            fontSize: 15,
-                            fontWeight: FontWeight.w400,
-                            color: AppColors.myGreen),
-                      ),
-                      subtitle: Text(
-                          'This is a crop tile description is a crop tile description is a crop tile description lorem ipsum is a crop tile description ',
-                          style: TextStyle(
-                              fontSize: 12, fontWeight: FontWeight.w400)),
-                      trailing: const CircleAvatar(
-                        radius: 40,
-                        backgroundImage: NetworkImage(
-                            'https://cdn-icons-png.flaticon.com/512/265/265674.png'),
-                      ),
-                    ),
-                    width: width * 0.95,
-                    decoration: BoxDecoration(
-                        color: AppColors.myGreen.withOpacity(0.2),
-                        borderRadius: BorderRadius.circular(10)),
-                  ),
-                ],
-              ),
-            ),
+            height: 2,
           ),
         ]),
       ),

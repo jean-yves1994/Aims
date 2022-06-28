@@ -1,4 +1,4 @@
-import 'package:aims/ui/resiterPage.dart';
+import 'package:aims/ui/registerPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:aims/const/appColors.dart';
