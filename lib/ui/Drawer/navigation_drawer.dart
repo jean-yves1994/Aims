@@ -2,12 +2,27 @@ import 'package:aims/ui/bottom_nav_pages/home.dart';
 import 'package:aims/ui/login_screen.dart';
 import 'package:aims/ui/registerPage.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'drawer_item.dart';
 
-class NavigationDrawer extends StatelessWidget {
+class NavigationDrawer extends StatefulWidget {
   const NavigationDrawer({Key? key}) : super(key: key);
 
+  @override
+  State<NavigationDrawer> createState() => _NavigationDrawerState();
+}
+
+class _NavigationDrawerState extends State<NavigationDrawer> {
+ 
+     void getCredentials() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+
+   var token = storage.getString("login")!;
+   var username = storage.getString("name")!;
+  }
+
+  
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -84,6 +99,9 @@ class NavigationDrawer extends StatelessWidget {
   }
 
   Widget headerWidget() {
+    
+
+
     const url = 'https://cdn-icons-png.flaticon.com/512/265/265674.png';
     return Row(
       children: [
@@ -102,7 +120,7 @@ class NavigationDrawer extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            Text('person@email.com',
+            Text('Username',
                 style: TextStyle(fontSize: 14, color: Colors.white))
           ],
         )

@@ -1,7 +1,9 @@
 import 'package:aims/Forms/Water/availableTanks.dart';
+import 'package:aims/Forms/Water/usedWaterDams.dart';
 import 'package:aims/Forms/Water/waterSourcesForm.dart';
 import 'package:aims/Forms/cropForm.dart';
 import 'package:aims/Forms/farmerRegister.dart';
+import 'package:aims/Forms/fertilizerForm.dart';
 import 'package:aims/Forms/landForm.dart';
 import 'package:aims/Forms/liveStockForm.dart';
 import 'package:aims/Forms/medicineDistributionForm.dart';
@@ -369,39 +371,45 @@ class _AddNewState extends State<AddNew> {
                   padding: const EdgeInsets.only(left: 30, right: 30),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      margin: EdgeInsets.only(
-                          left: 8.0, right: 8.0, bottom: 3.0, top: 0.5),
-                      decoration: BoxDecoration(
-                        color: Color.fromARGB(29, 38, 222, 130),
-                        border: Border.all(
-                          color: Colors.black,
+                    child: GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => FertilizerDistribution())),
+                      child: Container(
+                        margin: EdgeInsets.only(
+                            left: 8.0, right: 8.0, bottom: 3.0, top: 0.5),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(29, 38, 222, 130),
+                          border: Border.all(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(3),
                         ),
-                        borderRadius: BorderRadius.circular(3),
-                      ),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              children: [
-                                Text('Fertilizers Distribution',
-                                    style: TextStyle(
-                                        fontFamily: 'MontSerrat',
-                                        fontWeight: FontWeight.w600)),
-                              ],
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                children: [
+                                  Text('Fertilizers Distribution',
+                                      style: TextStyle(
+                                          fontFamily: 'MontSerrat',
+                                          fontWeight: FontWeight.w600)),
+                                ],
+                              ),
                             ),
-                          ),
-                          Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Column(
-                              children: [
-                                Icon(Icons.arrow_forward_ios, size: 15),
-                              ],
+                            Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Icon(Icons.arrow_forward_ios, size: 15),
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   ),
@@ -665,27 +673,24 @@ class _AddNewState extends State<AddNew> {
                   padding: const EdgeInsets.only(left: 30, right: 30),
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Container(
-                      margin: EdgeInsets.only(
-                          left: 8.0, right: 8.0, bottom: 3.0, top: 8.0),
-                      child: Row(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(20),
-                            child: Column(
-                              children: [
-                                Text(
-                                  'Water Informartion',
-                                  style: TextStyle(
-                                      fontFamily: 'MontSerrat',
-                                      fontSize: 20,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(8),
+                          child: Column(
+                            children: [
+                              Text(
+                                'Water Informartion',
+                                style: TextStyle(
+                                    fontFamily: 'MontSerrat',
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -814,6 +819,53 @@ class _AddNewState extends State<AddNew> {
                               child: Column(
                                 children: [
                                   Text('Available Tanks',
+                                      style: TextStyle(
+                                          fontFamily: 'MontSerrat',
+                                          fontWeight: FontWeight.w600)),
+                                ],
+                              ),
+                            ),
+                            Spacer(),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Column(
+                                children: [
+                                  Icon(Icons.arrow_forward_ios, size: 15),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(left: 30, right: 30),
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: GestureDetector(
+                      onTap: () => Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const UsedWaterDams())),
+                      child: Container(
+                        margin: EdgeInsets.only(
+                            left: 8.0, right: 8.0, bottom: 3.0, top: 0.5),
+                        decoration: BoxDecoration(
+                          color: Color.fromARGB(29, 38, 222, 130),
+                          border: Border.all(
+                            color: Colors.black,
+                          ),
+                          borderRadius: BorderRadius.circular(4),
+                        ),
+                        child: Row(
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Column(
+                                children: [
+                                  Text('Water Dams Used',
                                       style: TextStyle(
                                           fontFamily: 'MontSerrat',
                                           fontWeight: FontWeight.w600)),

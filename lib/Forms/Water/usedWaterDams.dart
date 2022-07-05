@@ -3,19 +3,27 @@ import 'package:aims/ui/Drawer/navigation_drawer.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:intl/intl.dart';
 
-import '../ui/bottom_nav_pages/addNew.dart';
-import '../widgets/customButton.dart';
+import '../../widgets/customButton.dart';
 
-class SeedDistribution extends StatefulWidget {
-  const SeedDistribution({Key? key}) : super(key: key);
+class UsedWaterDams extends StatefulWidget {
+  const UsedWaterDams({Key? key}) : super(key: key);
 
   @override
-  State<SeedDistribution> createState() => _SeedDistribution();
+  State<UsedWaterDams> createState() => _UsedWaterDams();
 }
 
-class _SeedDistribution extends State<SeedDistribution> {
+class _UsedWaterDams extends State<UsedWaterDams> {
   late double height, width;
+  TextEditingController dateinput = TextEditingController(); 
+  //text editing controller for text field
+  
+  @override
+  void initState() {
+    dateinput.text = ""; //set the initial value of text field
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     final double height = MediaQuery.of(context).size.height;
@@ -32,7 +40,7 @@ class _SeedDistribution extends State<SeedDistribution> {
               bottom: Radius.circular(30),
             ),
           ),
-          title: Text('Seed Distribution'),
+          title: Text('Used Water Dams'),
           centerTitle: true,
           backgroundColor: AppColors.myGreen,
           elevation: 7,
@@ -68,7 +76,7 @@ class _SeedDistribution extends State<SeedDistribution> {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 5.h,
+                          height: 35.h,
                         ),
                         Row(
                           children: [
@@ -83,53 +91,7 @@ class _SeedDistribution extends State<SeedDistribution> {
                                       fontSize: 14.sp,
                                       color: const Color(0xFF414041),
                                     ), */
-                                    labelText: 'Seed Name',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Season',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Province',
+                                    labelText: 'Dam Name',
                                     suffixIcon:
                                         Icon(Icons.arrow_drop_down, size: 24),
                                     labelStyle: TextStyle(
@@ -161,7 +123,6 @@ class _SeedDistribution extends State<SeedDistribution> {
                             ),
                           ],
                         ),
-
                         Row(
                           children: [
                             Expanded(
@@ -174,9 +135,7 @@ class _SeedDistribution extends State<SeedDistribution> {
                                       fontSize: 14.sp,
                                       color: const Color(0xFF414041),
                                     ), */
-                                    labelText: 'District',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
+                                    labelText: 'Province',
                                     labelStyle: TextStyle(
                                       fontSize: 15.sp,
                                       color: AppColors.myGreen,
@@ -189,13 +148,38 @@ class _SeedDistribution extends State<SeedDistribution> {
                               child: Padding(
                                 padding: const EdgeInsets.all(8.0),
                                 child: TextField(
-                                  // controller: _passwordController,
+                                  readOnly: true,
+                                   controller: dateinput,
                                   decoration: InputDecoration(
                                     hintStyle: TextStyle(
                                       fontSize: 14.sp,
                                       color: const Color(0xFF414041),
                                     ),
-                                    labelText: 'No of Beneficiaries',
+                                    labelText: 'Date',
+                                    suffixIcon: GestureDetector(
+                                        onTap: () async {
+                                          DateTime? pickedDate =
+                                              await showDatePicker(
+                                                  context: context,
+                                                  initialDate: DateTime.now(),
+                                                  firstDate: DateTime(
+                                                      2000), //DateTime.now() - not to allow to choose before today.
+                                                  lastDate: DateTime(2101));
+                                                  if(pickedDate != null ){
+                      print(pickedDate);  //pickedDate output format => 2021-03-10 00:00:00.000
+                      String formattedDate = DateFormat('yyyy-MM-dd').format(pickedDate); 
+                      print(formattedDate); //formatted date output using intl package =>  2021-03-16
+                        //you can implement different kind of Date Format here according to your requirement
+
+                      setState(() {
+                         dateinput.text = formattedDate; //set output date to TextField value. 
+                      });
+                  }else{
+                      print("Date is not selected");
+                  }
+                                        },
+                                        child: Icon(
+                                            Icons.calendar_month_outlined)),
                                     labelStyle: TextStyle(
                                       fontSize: 15.sp,
                                       color: AppColors.myGreen,

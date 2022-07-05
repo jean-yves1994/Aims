@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:aims/const/appColors.dart';
 import 'package:aims/ui/bottom_nav_pages/home.dart';
 import 'package:aims/ui/bottom_nav_pages/addNew.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class BottomNavController extends StatefulWidget {
   const BottomNavController({Key? key}) : super(key: key);

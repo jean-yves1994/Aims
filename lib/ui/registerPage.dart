@@ -1,9 +1,16 @@
+import 'dart:convert';
+import 'dart:io';
+
+import 'package:aims/API/api.dart';
 import 'package:aims/ui/login_screen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:aims/const/appColors.dart';
 import 'package:aims/widgets/customButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import 'homeScreen.dart';
 
@@ -15,6 +22,48 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController repasswordController = TextEditingController();
+
+  void register(String name, email, password, password_confirmation) async {
+    HttpOverrides.global = MyHttpOverrides();
+    try {
+      Response response = await post(
+          Uri.parse('https://aims.estateconsultinginc.com/api/register'),
+          body: {
+            'name': name,
+            'email': email,
+            'password': password,
+            'password_confirmation': password_confirmation
+          });
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print('Registration successfully');
+        Navigator.push(
+            context, MaterialPageRoute(builder: ((context) => LoginScreen())));
+      } else {
+        Fluttertoast.showToast(
+            msg: "Something went wrong!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
   bool _obscureText = true;
   @override
   Widget build(BuildContext context) {
@@ -78,7 +127,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             Expanded(
                               child: TextField(
-                                //controller
+                                controller: nameController,
                                 decoration: InputDecoration(
                                   hintText: "Full name",
                                   hintStyle: TextStyle(
@@ -119,7 +168,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             Expanded(
                               child: TextField(
-                                //controller
+                                controller: emailController,
                                 decoration: InputDecoration(
                                   hintText: "example@gmail.com",
                                   hintStyle: TextStyle(
@@ -136,7 +185,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10.w,),
+                        SizedBox(
+                          height: 10.w,
+                        ),
                         Row(
                           children: [
                             Container(
@@ -158,7 +209,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             Expanded(
                               child: TextField(
-                                // controller: _passwordController,
+                                controller: passwordController,
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
                                   hintText: "password must be 6 character",
@@ -197,7 +248,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                           ],
                         ),
-                        SizedBox(height: 10.w,),
+                        SizedBox(
+                          height: 10.w,
+                        ),
                         Row(
                           children: [
                             Container(
@@ -219,7 +272,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             Expanded(
                               child: TextField(
-                                // controller: _passwordController,
+                                controller: repasswordController,
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
                                   hintText: "password must be 6 character",
@@ -265,11 +318,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         customButton(
                           "Sign Up",
                           () {
-                            //signIn method call
-                            Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) => const LoginScreen()));
+                            register(
+                                nameController.text.toString(),
+                                emailController.text.toString(),
+                                passwordController.text.toString(),
+                                repasswordController.text.toString());
                           },
                         ),
                         SizedBox(
@@ -316,3 +369,13 @@ class _RegisterScreenState extends State<RegisterScreen> {
     );
   }
 }
+
+ class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
+  }
+  
+} 

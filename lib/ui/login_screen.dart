@@ -1,10 +1,17 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:aims/ui/registerPage.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:aims/const/appColors.dart';
 import 'package:aims/widgets/customButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
+import '../API/api.dart';
 import 'homeScreen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -18,6 +25,35 @@ class LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   bool _obscureText = true;
+
+  void login(String email, password) async {
+    HttpOverrides.global = MyHttpOverrides();
+    try {
+      Response response = await post(
+          Uri.parse('https://aims.estateconsultinginc.com/api/login'),
+          body: {'email': email, 'password': password});
+
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        SharedPreferences pref = await SharedPreferences.getInstance();
+        await pref.setString("login", data['token']);
+        await pref.setString("name", data['name']);
+        Navigator.push(context,
+            MaterialPageRoute(builder: ((context) => BottomNavController())));
+      } else {
+        Fluttertoast.showToast(
+            msg: "Something went wrong!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -173,11 +209,8 @@ class LoginScreenState extends State<LoginScreen> {
                           "Sign",
                           () {
                             //signIn method call
-                            Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) =>
-                                        const BottomNavController()));
+                            login(_emailController.text.toString(),
+                                _passwordController.text.toString());
                           },
                         ),
                         SizedBox(
@@ -222,5 +255,14 @@ class LoginScreenState extends State<LoginScreen> {
         ),
       ),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }

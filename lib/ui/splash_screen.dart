@@ -1,9 +1,13 @@
 import 'dart:async';
+import 'dart:convert';
 
+import 'package:aims/ui/homeScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:aims/ui/login_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:http/http.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -14,12 +18,24 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  bool isAuth = false;
+
+  checkAuth() async {
+    SharedPreferences preferences = await SharedPreferences.getInstance();
+    String? val = preferences.getString("login");
+    if (val != null) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => const BottomNavController()),
+          (route) => false);
+    } else {
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => LoginScreen()));
+    }
+  }
+
   @override
   void initState() {
-    Timer(
-        const Duration(seconds: 3),
-        () => Navigator.push(
-            context, CupertinoPageRoute(builder: (_) => const LoginScreen())));
+    Timer(const Duration(seconds: 3), () => checkAuth());
     super.initState();
   }
 
@@ -46,5 +62,24 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+  _checkIfLoggedIn() async {
+    SharedPreferences localStorage = await SharedPreferences.getInstance();
+    var token = localStorage.getString('token');
+    if (token != null) {
+      setState(() {
+        isAuth = true;
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => const BottomNavController()));
+      });
+    } else {
+      setState(() {
+        Navigator.push(context,
+            MaterialPageRoute(builder: (context) => const LoginScreen()));
+      });
+    }
   }
 }

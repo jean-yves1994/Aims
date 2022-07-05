@@ -2,6 +2,7 @@ import 'package:aims/const/appColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Drawer/navigation_drawer.dart';
 
@@ -13,6 +14,15 @@ class Home extends StatefulWidget {
 }
 
 class HomeState extends State<Home> {
+  String token = "";
+  String username = "";
+
+  @override
+  void initState() {
+    super.initState();
+    getCredentials();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -91,6 +101,14 @@ class HomeState extends State<Home> {
     );
   }
 
+  void getCredentials() async {
+    SharedPreferences storage = await SharedPreferences.getInstance();
+    setState(() {
+      token = storage.getString("login")!;
+      username = storage.getString("name")!;
+    });
+  }
+
   Widget header() {
     return Row(
       children: [
@@ -105,7 +123,7 @@ class HomeState extends State<Home> {
                   fontSize: 23),
             ),
             TextSpan(
-              text: "Alex",
+              text: username,
               style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'MontSerrat',

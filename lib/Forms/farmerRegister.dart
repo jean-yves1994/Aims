@@ -1,8 +1,14 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:aims/const/appColors.dart';
 import 'package:aims/ui/Drawer/navigation_drawer.dart';
+import 'package:aims/ui/bottom_nav_pages/addNew.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart';
 
 import '../widgets/customButton.dart';
 
@@ -14,6 +20,55 @@ class FarmerRegisterForm extends StatefulWidget {
 }
 
 class _FarmerRegisterForm extends State<FarmerRegisterForm> {
+  TextEditingController idController = TextEditingController();
+  TextEditingController wardController = TextEditingController();
+  TextEditingController localtyController = TextEditingController();
+  TextEditingController firstNameController = TextEditingController();
+  TextEditingController lastNameController = TextEditingController();
+  TextEditingController telephoneController = TextEditingController();
+  TextEditingController provinceController = TextEditingController();
+  TextEditingController districtController = TextEditingController();
+  TextEditingController longitudeController = TextEditingController();
+  TextEditingController latitudeController = TextEditingController();
+
+  void farmerRegister(String idno, wardno, locality, name, sname, tel, province,
+      district, lng, lat) async {
+    HttpOverrides.global = MyHttpOverrides();
+    try {
+      Response response = await post(
+          Uri.parse('https://aims.estateconsultinginc.com/api/register'),
+          body: {
+            'idno': idController,
+            'wardno': wardController,
+            'locality': localtyController,
+            'name': firstNameController,
+            'sname': lastNameController,
+            'tel': telephoneController,
+            'province': provinceController,
+            'district': districtController,
+            'lng': longitudeController,
+            'lat': latitudeController,
+          });
+      if (response.statusCode == 200) {
+        var data = jsonDecode(response.body.toString());
+        print('Registration successfully');
+        Navigator.push(
+            context, MaterialPageRoute(builder: ((context) => AddNew())));
+      } else {
+        Fluttertoast.showToast(
+            msg: "Something went wrong!",
+            toastLength: Toast.LENGTH_SHORT,
+            gravity: ToastGravity.BOTTOM,
+            timeInSecForIosWeb: 1,
+            backgroundColor: Colors.red,
+            textColor: Colors.white,
+            fontSize: 16.0);
+      }
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
   late double height, width;
   @override
   Widget build(BuildContext context) {
@@ -315,5 +370,14 @@ class _FarmerRegisterForm extends State<FarmerRegisterForm> {
         ),
       ),
     );
+  }
+}
+
+class MyHttpOverrides extends HttpOverrides {
+  @override
+  HttpClient createHttpClient(SecurityContext? context) {
+    return super.createHttpClient(context)
+      ..badCertificateCallback =
+          (X509Certificate cert, String host, int port) => true;
   }
 }
