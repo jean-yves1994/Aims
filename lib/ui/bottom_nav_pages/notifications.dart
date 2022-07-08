@@ -17,7 +17,7 @@ class _NotificationsState extends State<Notifications> {
     final double height = MediaQuery.of(context).size.height;
     final double width = MediaQuery.of(context).size.width;
     return Scaffold(
-      drawer: const NavigationDrawer(),
+      drawer:  NavigationDrawer(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
         child: AppBar(

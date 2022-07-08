@@ -23,16 +23,16 @@ class _LandFormScreen extends State<LandFormScreen> {
 
     String? selectedValue;
     return Scaffold(
-      drawer: const NavigationDrawer(),
+      drawer:  NavigationDrawer(),
       appBar: PreferredSize(
-        preferredSize: Size.fromHeight(60.0),
+        preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
-          shape: RoundedRectangleBorder(
+          shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.vertical(
               bottom: Radius.circular(30),
             ),
           ),
-          title: Text('Land Information'),
+          title: const Text('Land Information'),
           centerTitle: true,
           backgroundColor: AppColors.myGreen,
           elevation: 7,

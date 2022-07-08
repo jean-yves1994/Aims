@@ -1,7 +1,11 @@
+// ignore_for_file: unnecessary_new
+
 import 'package:aims/const/appColors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:percent_indicator/circular_percent_indicator.dart';
+import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../Drawer/navigation_drawer.dart';
@@ -26,7 +30,7 @@ class HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const NavigationDrawer(),
+      drawer: NavigationDrawer(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
         child: AppBar(
@@ -53,48 +57,74 @@ class HomeState extends State<Home> {
         ),
       ),
       body: Stack(children: [
-        Positioned(
-          top: 10,
-          left: 20,
-          right: 20,
-          bottom: 0,
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Container(
-                    child: GestureDetector(
-                        onTap: () {
-                          print('Crop Taped');
-                        },
-                        child: cropCards()),
-                  ),
-                  Container(
-                    child: GestureDetector(
-                        onTap: () {
-                          print('Water Taped');
-                        },
-                        child: waterCards()),
-                  ),
-                  Container(
-                    child: GestureDetector(
-                        onTap: () {
-                          print('Land Taped');
-                        },
-                        child: landCards()),
-                  ),
-                  Container(
-                    child: GestureDetector(
-                        onTap: () {
-                          print('Livestock Taped');
-                        },
-                        child: livestockCards()),
-                  ),
-                ],
+        SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Padding(
+                padding:
+                    EdgeInsets.only(left: 15, right: 15, top: 15, bottom: 5),
+                child: Container(
+                  child: GestureDetector(
+                      onTap: () {
+                        print('Crop Taped');
+                      },
+                      child: Expanded(
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Color.fromARGB(255, 90, 32, 184),
+                          ),
+                          child: Padding(
+                            padding: const EdgeInsets.all(15.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                CircularPercentIndicator(
+                                  radius: 45,
+                                  lineWidth: 15,
+                                  center: Text(
+                                    '70%',
+                                    style: TextStyle(
+                                        fontSize: 20, color: Colors.white),
+                                  ),
+                                  percent: 0.7,
+                                  progressColor: Colors.white,
+                                  circularStrokeCap: CircularStrokeCap.round,
+                                  backgroundColor:
+                                      Color.fromARGB(255, 181, 162, 216),
+                                  animation: true,
+                                  animationDuration: 700,
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(15.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      FittedBox(
+                                        fit: BoxFit.fitWidth,
+                                        child: Text('Overal productions',
+                                            style: TextStyle(
+                                                fontSize: 20,
+                                                color: Colors.white,
+                                                fontFamily: 'MontSerrat',
+                                                fontWeight: FontWeight.w600)),
+                                      ),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                          ),
+                        ),
+                      )),
+                ),
               ),
-            ),
+              cropCards(),
+              cropCards2(),
+            ],
           ),
         ),
       ]),
@@ -115,7 +145,7 @@ class HomeState extends State<Home> {
         RichText(
           text: TextSpan(children: <TextSpan>[
             TextSpan(
-              text: "Welcome back, ",
+              text: "Hi, ",
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
@@ -123,7 +153,7 @@ class HomeState extends State<Home> {
                   fontSize: 23),
             ),
             TextSpan(
-              text: username,
+              text: username[0].toUpperCase() + username.substring(1),
               style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'MontSerrat',
@@ -137,822 +167,193 @@ class HomeState extends State<Home> {
   }
 
   Widget cropCards() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 19),
-          padding: EdgeInsets.all(30),
-          decoration: BoxDecoration(
-              color: AppColors.myGreen,
-              borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                "Crops",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17,
-                    fontFamily: 'MontSerrat'),
-              ),
-              const SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: Text(
-                      "103",
-                      style: TextStyle(
-                          fontSize: 26,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Text(
-                    "Kg",
-                    style: TextStyle(fontSize: 15, color: Colors.white),
-                  ),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(top: 20),
-                child: Text(
-                  "Used fertilizer",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontFamily: 'MontSerrat'),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Spacer(),
-        Column(
+    return Padding(
+      padding: const EdgeInsets.only(top: 4, bottom: 4, right: 15, left: 15),
+      child: Card(
+        elevation: 10,
+        shadowColor: Colors.grey,
+        child: Column(
           children: [
-            Container(
-              width: 180,
-              margin: EdgeInsets.only(top: 20),
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  color: Color(0xffF3F6FD),
-                  borderRadius: BorderRadius.circular(15)),
+            Padding(
+              padding: EdgeInsets.all(7.0),
               child: Row(
                 children: [
-                  Container(
-                    height: 40,
-                    width: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xff375BE9)),
-                    child: Center(
-                      child: Text(
-                        "8",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18),
-                      ),
+                  Padding(
+                    padding: EdgeInsets.all(7.0),
+                    child: Text(
+                      'Distributed Seeds',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontFamily: 'MontSerrat',
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 46, 32, 179)),
                     ),
                   ),
-                  SizedBox(
-                    width: 20,
+                  Padding(
+                    padding: EdgeInsets.all(7.0),
+                    child: Text(
+                      '1240 ',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
                   ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Tones",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Crop production",
-                        style: TextStyle(
-                            fontSize: 13, color: Colors.blueGrey[500]),
-                      ),
-                    ],
+                  Padding(
+                    padding: EdgeInsets.all(7.0),
+                    child: Text(
+                      'Tones',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
                   ),
                 ],
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.only(top: 10),
-              decoration: BoxDecoration(
-                  color: Color(0xffF3F6FD),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Column(
+            Padding(
+              padding: EdgeInsets.all(7.0),
+              child: Row(
                 children: [
-                  Container(
-                    width: 150,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color(0xff375BE9)),
-                          child: Center(
-                            child: Text(
-                              "32",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Ha",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "Area",
-                              style: TextStyle(
-                                  fontSize: 13, color: Colors.blueGrey[500]),
-                            ),
-                          ],
-                        ),
-                      ],
+                  Padding(
+                    padding: EdgeInsets.all(7.0),
+                    child: Text(
+                      'Seeds Quantity',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontFamily: 'MontSerrat',
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 46, 32, 179)),
                     ),
                   ),
-                  SizedBox(
-                    height: 10,
+                  Padding(
+                    padding: EdgeInsets.all(7.0),
+                    child: Text(
+                      '68029 ',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
                   ),
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[100],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "320",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[100],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "Kg Seeds",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                      ),
-                    ],
+                  Padding(
+                    padding: EdgeInsets.all(7.0),
+                    child: Text(
+                      'Tones',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(7.0),
+              child: Row(
+                children: const [
+                  Padding(
+                    padding: EdgeInsets.all(7.0),
+                    child: Text(
+                      'Available Fertilizers',
+                      style: TextStyle(
+                          fontSize: 18.0,
+                          fontFamily: 'MontSerrat',
+                          fontWeight: FontWeight.bold,
+                          color: Color.fromARGB(255, 46, 32, 179)),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(7.0),
+                    child: Text(
+                      '733568 ',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.all(7.0),
+                    child: Text(
+                      'Tones',
+                      style: TextStyle(fontSize: 18.0),
+                    ),
                   ),
                 ],
               ),
             ),
           ],
-        )
-      ],
+        ),
+      ),
     );
   }
 
-//Water card
-  Widget waterCards() {
-    return Row(
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 20),
-          padding: EdgeInsets.all(30),
-          decoration: BoxDecoration(
-              color: AppColors.myGreen,
-              borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Water",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17,
-                    fontFamily: 'MontSerrat'),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: Text(
-                      "1.3",
-                      style: TextStyle(
-                          fontSize: 26,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Text(
-                    "m3",
-                    style: TextStyle(fontSize: 13, color: Colors.white),
-                  ),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(top: 20),
-                child: Text(
-                  " Water Tank",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontFamily: 'MontSerrat'),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Spacer(),
-        Column(
+  Widget cropCards2() {
+    return Padding(
+      padding: const EdgeInsets.all(15.0),
+      child: Card(
+        elevation: 10,
+        shadowColor: Colors.grey,
+        child: Column(
           children: [
-            Container(
-              width: 180,
-              margin: EdgeInsets.only(top: 20),
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  color: Color(0xffF3F6FD),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Row(
-                children: [
-                  Container(
-                    height: 40,
-                    width: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xff375BE9)),
-                    child: Center(
-                      child: Text(
-                        "13",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "m3",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Supplied",
-                        style: TextStyle(
-                            fontSize: 13, color: Colors.blueGrey[500]),
-                      ),
-                    ],
-                  ),
-                ],
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: const Text('Cash-crops',
+                  style: TextStyle(
+                      fontFamily: 'MontSerrat', fontWeight: FontWeight.w600)),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: LinearPercentIndicator(
+                lineHeight: 10,
+                percent: 0.5,
+                progressColor: Color.fromARGB(255, 19, 37, 202),
+                backgroundColor: Colors.grey.shade200,
+                leading: CircleAvatar(backgroundColor: Colors.blue.shade100),
+                barRadius: Radius.circular(5),
+                animation: true,
+                animationDuration: 700,
               ),
             ),
-            Container(
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.only(top: 10),
-              decoration: BoxDecoration(
-                  color: Color(0xffF3F6FD),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Column(
-                children: [
-                  Container(
-                    width: 150,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color(0xff375BE9)),
-                          child: Center(
-                            child: Text(
-                              "1.3",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Ha",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "Used on",
-                              style: TextStyle(
-                                  fontSize: 13, color: Colors.blueGrey[500]),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[100],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "mobile App",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[100],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "branding",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
+            const Text('Food-crops',
+                style: TextStyle(
+                    fontFamily: 'MontSerrat', fontWeight: FontWeight.w600)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: LinearPercentIndicator(
+                lineHeight: 10,
+                percent: 0.7,
+                progressColor: Color.fromARGB(255, 30, 255, 86),
+                backgroundColor: Colors.grey.shade200,
+                leading: CircleAvatar(backgroundColor: Colors.green.shade100),
+                barRadius: Radius.circular(5),
+                animation: true,
+                animationDuration: 700,
+              ),
+            ),
+            Text('Export-crops',
+                style: TextStyle(
+                    fontFamily: 'MontSerrat', fontWeight: FontWeight.w600)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: LinearPercentIndicator(
+                lineHeight: 10,
+                percent: 0.6,
+                progressColor: Color.fromARGB(255, 248, 212, 6),
+                backgroundColor: Colors.grey.shade200,
+                leading: CircleAvatar(backgroundColor: Colors.blue.shade100),
+                barRadius: Radius.circular(5),
+                animation: true,
+                animationDuration: 700,
+              ),
+            ),
+            Text('Industrial-crops',
+                style: TextStyle(
+                    fontFamily: 'MontSerrat', fontWeight: FontWeight.w600)),
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: LinearPercentIndicator(
+                lineHeight: 10,
+                percent: 0.3,
+                progressColor: Color.fromARGB(255, 248, 3, 3),
+                backgroundColor: Colors.grey.shade200,
+                leading: CircleAvatar(backgroundColor: Colors.red.shade100),
+                barRadius: Radius.circular(5),
+                animation: true,
+                animationDuration: 700,
               ),
             ),
           ],
-        )
-      ],
-    );
-  }
-
-//Land Card
-  Widget landCards() {
-    return Row(
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 20),
-          padding: EdgeInsets.all(30),
-          decoration: BoxDecoration(
-              color: AppColors.myGreen,
-              borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Land",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17,
-                    fontFamily: 'MontSerrat'),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: Text(
-                      "103",
-                      style: TextStyle(
-                          fontSize: 26,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Text(
-                    "Kg",
-                    style: TextStyle(fontSize: 13, color: Colors.white),
-                  ),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(top: 20),
-                child: Text(
-                  "Used fertilizer",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontFamily: 'MontSerrat'),
-                ),
-              ),
-            ],
-          ),
         ),
-        Spacer(),
-        Column(
-          children: [
-            Container(
-              width: 180,
-              margin: EdgeInsets.only(top: 20),
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  color: Color(0xffF3F6FD),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Row(
-                children: [
-                  Container(
-                    height: 40,
-                    width: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xff375BE9)),
-                    child: Center(
-                      child: Text(
-                        "8",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Tones",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Crop production",
-                        style: TextStyle(
-                            fontSize: 13, color: Colors.blueGrey[500]),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.only(top: 10),
-              decoration: BoxDecoration(
-                  color: Color(0xffF3F6FD),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Column(
-                children: [
-                  Container(
-                    width: 150,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color(0xff375BE9)),
-                          child: Center(
-                            child: Text(
-                              "32",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Projects",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "8 this month",
-                              style: TextStyle(
-                                  fontSize: 13, color: Colors.blueGrey[500]),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[100],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "mobile App",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[100],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "branding",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        )
-      ],
-    );
-  }
-
-//Livestock card
-  Widget livestockCards() {
-    return Row(
-      children: [
-        Container(
-          margin: EdgeInsets.only(top: 20),
-          padding: EdgeInsets.all(30),
-          decoration: BoxDecoration(
-              color: AppColors.myGreen,
-              borderRadius: BorderRadius.circular(10)),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Livestock",
-                style: TextStyle(
-                    color: Colors.white,
-                    fontWeight: FontWeight.w600,
-                    fontSize: 17,
-                    fontFamily: 'MontSerrat'),
-              ),
-              SizedBox(
-                height: 20,
-              ),
-              Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 5),
-                    child: Text(
-                      "103",
-                      style: TextStyle(
-                          fontSize: 26,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold),
-                    ),
-                  ),
-                  Text(
-                    "Kg",
-                    style: TextStyle(fontSize: 13, color: Colors.white),
-                  ),
-                ],
-              ),
-              Container(
-                padding: EdgeInsets.all(10),
-                margin: EdgeInsets.only(top: 20),
-                child: Text(
-                  "Used fertilizer",
-                  style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 10,
-                      fontFamily: 'MontSerrat'),
-                ),
-              ),
-            ],
-          ),
-        ),
-        Spacer(),
-        Column(
-          children: [
-            Container(
-              width: 180,
-              margin: EdgeInsets.only(top: 20),
-              padding: EdgeInsets.all(15),
-              decoration: BoxDecoration(
-                  color: Color(0xffF3F6FD),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Row(
-                children: [
-                  Container(
-                    height: 40,
-                    width: 30,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Color(0xff375BE9)),
-                    child: Center(
-                      child: Text(
-                        "8",
-                        textAlign: TextAlign.left,
-                        style: TextStyle(
-                            color: Colors.white,
-                            fontWeight: FontWeight.w400,
-                            fontSize: 18),
-                      ),
-                    ),
-                  ),
-                  SizedBox(
-                    width: 20,
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Tones",
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 16),
-                      ),
-                      SizedBox(
-                        height: 5,
-                      ),
-                      Text(
-                        "Crop production",
-                        style: TextStyle(
-                            fontSize: 13, color: Colors.blueGrey[500]),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-            Container(
-              padding: EdgeInsets.all(15),
-              margin: EdgeInsets.only(top: 10),
-              decoration: BoxDecoration(
-                  color: Color(0xffF3F6FD),
-                  borderRadius: BorderRadius.circular(15)),
-              child: Column(
-                children: [
-                  Container(
-                    width: 150,
-                    child: Row(
-                      children: [
-                        Container(
-                          height: 40,
-                          width: 40,
-                          decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(10),
-                              color: Color(0xff375BE9)),
-                          child: Center(
-                            child: Text(
-                              "32",
-                              textAlign: TextAlign.center,
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.w400,
-                                fontSize: 18,
-                              ),
-                            ),
-                          ),
-                        ),
-                        SizedBox(
-                          width: 20,
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Projects",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.bold, fontSize: 16),
-                            ),
-                            SizedBox(
-                              height: 5,
-                            ),
-                            Text(
-                              "8 this month",
-                              style: TextStyle(
-                                  fontSize: 13, color: Colors.blueGrey[500]),
-                            ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Row(
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[100],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "mobile App",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                      ),
-                      SizedBox(width: 10),
-                      Container(
-                        padding: EdgeInsets.all(5),
-                        decoration: BoxDecoration(
-                          color: Colors.blueGrey[100],
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: Text(
-                          "branding",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 10),
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        )
-      ],
+      ),
     );
   }
 }

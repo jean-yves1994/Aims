@@ -22,22 +22,24 @@ class LoginScreen extends StatefulWidget {
 }
 
 class LoginScreenState extends State<LoginScreen> {
-  final TextEditingController _emailController = TextEditingController();
-  final TextEditingController _passwordController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   bool _obscureText = true;
 
-  void login(String email, password) async {
+  void login() async {
     HttpOverrides.global = MyHttpOverrides();
     try {
-      Response response = await post(
-          Uri.parse('https://aims.estateconsultinginc.com/api/login'),
-          body: {'email': email, 'password': password});
-
+      var body = {
+        'email': emailController.text,
+        'password': passwordController.text
+      };
+      var response = await CallApi().postData(body, 'login');
       if (response.statusCode == 200) {
         var data = jsonDecode(response.body.toString());
         SharedPreferences pref = await SharedPreferences.getInstance();
-        await pref.setString("login", data['token']);
+        await pref.setString("token", data['token']);
         await pref.setString("name", data['name']);
+        print('token');
         Navigator.push(context,
             MaterialPageRoute(builder: ((context) => BottomNavController())));
       } else {
@@ -120,7 +122,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ),
                             Expanded(
                               child: TextField(
-                                controller: _emailController,
+                                controller: emailController,
                                 decoration: InputDecoration(
                                   hintText: "example@gmail.com",
                                   hintStyle: TextStyle(
@@ -161,7 +163,7 @@ class LoginScreenState extends State<LoginScreen> {
                             ),
                             Expanded(
                               child: TextField(
-                                controller: _passwordController,
+                                controller: passwordController,
                                 obscureText: _obscureText,
                                 decoration: InputDecoration(
                                   hintText: "password must be 6 character",
@@ -209,8 +211,7 @@ class LoginScreenState extends State<LoginScreen> {
                           "Sign",
                           () {
                             //signIn method call
-                            login(_emailController.text.toString(),
-                                _passwordController.text.toString());
+                            login();
                           },
                         ),
                         SizedBox(

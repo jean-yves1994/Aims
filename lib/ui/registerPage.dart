@@ -27,20 +27,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController passwordController = TextEditingController();
   TextEditingController repasswordController = TextEditingController();
 
-  void register(String name, email, password, password_confirmation) async {
+  void register() async {
     HttpOverrides.global = MyHttpOverrides();
     try {
-      Response response = await post(
-          Uri.parse('https://aims.estateconsultinginc.com/api/register'),
-          body: {
-            'name': name,
-            'email': email,
-            'password': password,
-            'password_confirmation': password_confirmation
-          });
+      var body = {
+        'name': nameController.text,
+        'email': emailController.text,
+        'password': passwordController.text,
+        'password_confirmation': repasswordController.text
+      };
+      var response = await CallApi().postData(body, 'register');
       if (response.statusCode == 200) {
-        var data = jsonDecode(response.body.toString());
-        print('Registration successfully');
+        print('Registration successfull');
         Navigator.push(
             context, MaterialPageRoute(builder: ((context) => LoginScreen())));
       } else {
@@ -318,11 +316,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         customButton(
                           "Sign Up",
                           () {
-                            register(
-                                nameController.text.toString(),
-                                emailController.text.toString(),
-                                passwordController.text.toString(),
-                                repasswordController.text.toString());
+                            register();
                           },
                         ),
                         SizedBox(
@@ -370,12 +364,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
   }
 }
 
- class MyHttpOverrides extends HttpOverrides {
+class MyHttpOverrides extends HttpOverrides {
   @override
   HttpClient createHttpClient(SecurityContext? context) {
     return super.createHttpClient(context)
       ..badCertificateCallback =
           (X509Certificate cert, String host, int port) => true;
   }
-  
-} 
+}

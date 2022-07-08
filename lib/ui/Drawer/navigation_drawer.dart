@@ -1,130 +1,119 @@
-import 'package:aims/ui/bottom_nav_pages/home.dart';
+import 'package:aims/const/appColors.dart';
 import 'package:aims/ui/login_screen.dart';
 import 'package:aims/ui/registerPage.dart';
 import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
-
-import 'drawer_item.dart';
 
 class NavigationDrawer extends StatefulWidget {
-  const NavigationDrawer({Key? key}) : super(key: key);
-
   @override
   State<NavigationDrawer> createState() => _NavigationDrawerState();
 }
 
 class _NavigationDrawerState extends State<NavigationDrawer> {
- 
-     void getCredentials() async {
-    SharedPreferences storage = await SharedPreferences.getInstance();
+  final padding = EdgeInsets.symmetric(horizontal: 20);
 
-   var token = storage.getString("login")!;
-   var username = storage.getString("name")!;
-  }
-
-  
   @override
   Widget build(BuildContext context) {
+    final name = 'Sarah Abs';
+    final email = 'sarah@abs.com';
+    final urlImage =
+        'https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80';
+
     return Drawer(
       child: Material(
-        color: Color.fromARGB(250, 30, 109, 52),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(24.0, 80, 24, 0),
-          child: Column(
-            children: [
-              headerWidget(),
-              const SizedBox(
-                height: 40,
+        color: Color.fromARGB(255, 31, 97, 64),
+        child: ListView(
+          children: <Widget>[
+            Container(
+              padding: padding,
+              child: Column(
+                children: [
+                  const SizedBox(height: 12),
+                  const SizedBox(height: 24),
+                  buildMenuItem(
+                    text: 'Profile',
+                    icon: Icons.people,
+                    onClicked: () => selectedItem(context, 0),
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'Reports',
+                    icon: Icons.favorite_border,
+                    onClicked: () => selectedItem(context, 1),
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'Workflow',
+                    icon: Icons.workspaces_outline,
+                    onClicked: () => selectedItem(context, 2),
+                  ),
+                  const SizedBox(height: 16),
+                  buildMenuItem(
+                    text: 'Updates',
+                    icon: Icons.update,
+                    onClicked: () => selectedItem(context, 3),
+                  ),
+                  const SizedBox(height: 24),
+                  Divider(color: Colors.white70),
+                  const SizedBox(height: 24),
+                  buildMenuItem(
+                    text: 'Logout',
+                    onClicked: () => selectedItem(context, 4),
+                  ),
+                ],
               ),
-              const Divider(
-                thickness: 1,
-                height: 10,
-                color: Color.fromARGB(255, 247, 245, 245),
-              ),
-              const SizedBox(
-                height: 40,
-              ),
-              DrawerItem(
-                  name: 'Reports',
-                  icon: Icons.library_books_outlined,
-                  onPressed: () => onItemPressed(context, index: 2)),
-              const SizedBox(
-                height: 30,
-              ),
-              DrawerItem(
-                  name: 'Setting',
-                  icon: Icons.settings,
-                  onPressed: () => onItemPressed(context, index: 1)),
-              const SizedBox(
-                height: 30,
-              ),
-              const Divider(
-                thickness: 1,
-                height: 10,
-                color: Color.fromARGB(255, 247, 245, 245),
-              ),
-              const SizedBox(
-                height: 30,
-              ),
-              DrawerItem(
-                  name: 'Log out',
-                  icon: Icons.logout,
-                  onPressed: () => onItemPressed(context, index: 2)),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
   }
 
-  void onItemPressed(BuildContext context, {required int index}) {
-    Navigator.pop(context);
+  Widget buildMenuItem({
+    required String text,
+    IconData? icon,
+    VoidCallback? onClicked,
+  }) {
+    final color = Colors.white;
+    final hoverColor = Colors.white70;
+
+    return ListTile(
+      leading: Icon(icon, color: color),
+      title: Text(text, style: TextStyle(color: color)),
+      hoverColor: hoverColor,
+      onTap: onClicked,
+    );
+  }
+
+  void selectedItem(BuildContext context, int index) {
+    Navigator.of(context).pop();
 
     switch (index) {
       case 0:
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => const Home()));
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => LoginScreen(),
+        ));
         break;
       case 1:
-        Navigator.push(context,
-            MaterialPageRoute(builder: (context) => const RegisterScreen()));
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => RegisterScreen(),
+        ));
         break;
       case 2:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => RegisterScreen(),
+        ));
+        break;
+      case 3:
+        Navigator.of(context).push(MaterialPageRoute(
+          builder: (context) => RegisterScreen(),
+        ));
+        break;
+      case 4:
         Navigator.pushAndRemoveUntil(
             context,
-            MaterialPageRoute(builder: (context) => const LoginScreen()),
+            MaterialPageRoute(builder: (context) => LoginScreen()),
             (route) => false);
         break;
     }
-  }
-
-  Widget headerWidget() {
-    
-
-
-    const url = 'https://cdn-icons-png.flaticon.com/512/265/265674.png';
-    return Row(
-      children: [
-        const CircleAvatar(
-          radius: 40,
-          backgroundImage: NetworkImage(url),
-        ),
-        const SizedBox(
-          width: 20,
-        ),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: const [
-            Text('Person name',
-                style: TextStyle(fontSize: 14, color: Colors.white)),
-            SizedBox(
-              height: 10,
-            ),
-            Text('Username',
-                style: TextStyle(fontSize: 14, color: Colors.white))
-          ],
-        )
-      ],
-    );
   }
 }

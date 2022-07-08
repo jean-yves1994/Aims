@@ -23,7 +23,7 @@ class _MedicineFormScreen extends State<MedicineFormScreen> {
 
     String? selectedValue;
     return Scaffold(
-      drawer: const NavigationDrawer(),
+      drawer:  NavigationDrawer(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
         child: AppBar(

@@ -71,13 +71,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "1.0.3"
-  dropdown_button2:
+  direct_select:
     dependency: "direct main"
     description:
-      name: dropdown_button2
+      name: direct_select
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "1.6.2"
+    version: "1.1.0"
   dropdown_textfield:
     dependency: "direct main"
     description:
@@ -275,6 +275,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.1.0"
+  percent_indicator:
+    dependency: "direct main"
+    description:
+      name: percent_indicator
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "4.2.2"
   platform:
     dependency: transitive
     description:
