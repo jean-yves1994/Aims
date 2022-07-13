@@ -23,7 +23,7 @@ class _CropInfoScreen extends State<CropInfoScreen> {
 
     String? selectedValue;
     return Scaffold(
-      drawer:  NavigationDrawer(),
+      drawer: NavigationDrawer(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60.0),
         child: AppBar(
@@ -50,342 +50,239 @@ class _CropInfoScreen extends State<CropInfoScreen> {
         ),
       ),
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                width: ScreenUtil().screenWidth,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: 0.2.w, bottom: 3.w, right: 8.w, left: 8.w),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 5.h,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(8),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 15,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Farmer ID'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Select Season',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Select ward',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Category',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Crop Name',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'First Owner\'s Name',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Second Owner\'s Name',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Select Province',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Select District',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Ward',
-                                    suffixIcon: const Icon(
-                                        Icons.arrow_drop_down,
-                                        size: 24),
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Target Area (Ha)',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Planted Area (Ha)',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Production (Mt)',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Crop Name',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        // elevated button
-                        customButton(
-                          "Submit",
-                          () {
-                            //signIn method call
-                            /*  Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) =>
-                                        const BottomNavController())); */
-                          },
-                        ),
-                      ],
+                      ),
                     ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Crop Name'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Target Area'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Planted Area'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Production (MT)'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Season'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('First Owner\'s Name'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Last Owner\'s Name'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'Province',
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          labelText: 'District',
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Longitude'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Latitude'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: EdgeInsets.all(8.0),
+                child: TextField(
+                  decoration: InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Ward',
+                    contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                   ),
                 ),
               ),
-            ),
-          ],
+
+              // elevated button
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: customButton(
+                  "Submit",
+                  () {},
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

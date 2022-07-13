@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:aims/const/appColors.dart';
 import 'package:aims/widgets/customButton.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -26,34 +25,23 @@ class LoginScreenState extends State<LoginScreen> {
   TextEditingController passwordController = TextEditingController();
   bool _obscureText = true;
 
-  void login() async {
-    HttpOverrides.global = MyHttpOverrides();
-    try {
-      var body = {
-        'email': emailController.text,
-        'password': passwordController.text
-      };
-      var response = await CallApi().postData(body, 'login');
-      if (response.statusCode == 200) {
-        var data = jsonDecode(response.body.toString());
-        SharedPreferences pref = await SharedPreferences.getInstance();
-        await pref.setString("token", data['token']);
-        await pref.setString("name", data['name']);
-        print('token');
-        Navigator.push(context,
-            MaterialPageRoute(builder: ((context) => BottomNavController())));
-      } else {
-        Fluttertoast.showToast(
-            msg: "Something went wrong!",
-            toastLength: Toast.LENGTH_SHORT,
-            gravity: ToastGravity.BOTTOM,
-            timeInSecForIosWeb: 1,
-            backgroundColor: Colors.red,
-            textColor: Colors.white,
-            fontSize: 16.0);
-      }
-    } catch (e) {
-      print(e.toString());
+  _login() async {
+    var data = {
+      'email': emailController.text,
+      'password': passwordController.text,
+    };
+
+    Response res = await CallApi().postData(data, '/login');
+    var body = json.decode(res.body);
+    print(body);
+    if (res.statusCode == 200) {
+      SharedPreferences localStorage = await SharedPreferences.getInstance();
+      localStorage.setString('login', body['token']);
+      localStorage.setString('name', json.encode(body['name']));
+      Navigator.push(context,
+          new MaterialPageRoute(builder: (context) => BottomNavController()));
+    } else {
+      print('Error');
     }
   }
 
@@ -211,7 +199,7 @@ class LoginScreenState extends State<LoginScreen> {
                           "Sign",
                           () {
                             //signIn method call
-                            login();
+                            _login();
                           },
                         ),
                         SizedBox(

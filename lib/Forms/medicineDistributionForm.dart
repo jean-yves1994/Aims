@@ -23,7 +23,7 @@ class _MedicineFormScreen extends State<MedicineFormScreen> {
 
     String? selectedValue;
     return Scaffold(
-      drawer:  NavigationDrawer(),
+      drawer: NavigationDrawer(),
       appBar: PreferredSize(
         preferredSize: const Size.fromHeight(60.0),
         child: AppBar(
@@ -86,10 +86,7 @@ class _MedicineFormScreen extends State<MedicineFormScreen> {
                                       //controller: _emailController,
 
                                       decoration: InputDecoration(
-                                        /* hintStyle: TextStyle(
-                                          fontSize: 14.sp,
-                                          color: const Color(0xFF414041),
-                                        ), */
+                                        border: OutlineInputBorder(),
                                         labelText: 'Select Season',
                                         suffixIcon: Icon(Icons.arrow_drop_down,
                                             size: 24),

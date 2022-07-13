@@ -1,6 +1,9 @@
 // ignore_for_file: unnecessary_new
 
+import 'dart:ui';
+
 import 'package:aims/const/appColors.dart';
+import 'package:easy_rich_text/easy_rich_text.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -70,7 +73,7 @@ class HomeState extends State<Home> {
                       onTap: () {
                         print('Crop Taped');
                       },
-                      child: Expanded(
+                      child: SafeArea(
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(15),
@@ -124,6 +127,7 @@ class HomeState extends State<Home> {
               ),
               cropCards(),
               cropCards2(),
+              cropCards3(),
             ],
           ),
         ),
@@ -149,11 +153,11 @@ class HomeState extends State<Home> {
               style: TextStyle(
                   color: Colors.white,
                   fontWeight: FontWeight.w700,
-                  fontFamily: 'amontSerrat',
+                  fontFamily: 'MontSerrat',
                   fontSize: 23),
             ),
             TextSpan(
-              text: username[0].toUpperCase() + username.substring(1),
+              text: username,
               style: TextStyle(
                   color: Colors.black,
                   fontFamily: 'MontSerrat',
@@ -284,25 +288,6 @@ class HomeState extends State<Home> {
         shadowColor: Colors.grey,
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: const Text('Cash-crops',
-                  style: TextStyle(
-                      fontFamily: 'MontSerrat', fontWeight: FontWeight.w600)),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: LinearPercentIndicator(
-                lineHeight: 10,
-                percent: 0.5,
-                progressColor: Color.fromARGB(255, 19, 37, 202),
-                backgroundColor: Colors.grey.shade200,
-                leading: CircleAvatar(backgroundColor: Colors.blue.shade100),
-                barRadius: Radius.circular(5),
-                animation: true,
-                animationDuration: 700,
-              ),
-            ),
             const Text('Food-crops',
                 style: TextStyle(
                     fontFamily: 'MontSerrat', fontWeight: FontWeight.w600)),
@@ -314,22 +299,6 @@ class HomeState extends State<Home> {
                 progressColor: Color.fromARGB(255, 30, 255, 86),
                 backgroundColor: Colors.grey.shade200,
                 leading: CircleAvatar(backgroundColor: Colors.green.shade100),
-                barRadius: Radius.circular(5),
-                animation: true,
-                animationDuration: 700,
-              ),
-            ),
-            Text('Export-crops',
-                style: TextStyle(
-                    fontFamily: 'MontSerrat', fontWeight: FontWeight.w600)),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: LinearPercentIndicator(
-                lineHeight: 10,
-                percent: 0.6,
-                progressColor: Color.fromARGB(255, 248, 212, 6),
-                backgroundColor: Colors.grey.shade200,
-                leading: CircleAvatar(backgroundColor: Colors.blue.shade100),
                 barRadius: Radius.circular(5),
                 animation: true,
                 animationDuration: 700,
@@ -356,4 +325,121 @@ class HomeState extends State<Home> {
       ),
     );
   }
+}
+
+Widget cropCards3() {
+  return Padding(
+    padding: const EdgeInsets.only(top: 4, bottom: 4, right: 15, left: 15),
+    child: Card(
+      elevation: 10,
+      shadowColor: Colors.grey,
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.all(7.0),
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: Text(
+                    'Available Water',
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        fontFamily: 'MontSerrat',
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 172, 44, 204)),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: Text(
+                    '1240 ',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: EasyRichText(
+                    "m3",
+                    patternList: [
+                      EasyRichTextPattern(
+                          targetString: '3',
+                          superScript: true,
+                          stringBeforeTarget: 'm'),
+                      EasyRichTextPattern(
+                          targetString: 'm', style: TextStyle(fontSize: 40))
+                    ],
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.all(7.0),
+            child: Row(
+              children: [
+                Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: Text(
+                    'Registered Land',
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        fontFamily: 'MontSerrat',
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 7, 133, 91)),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: Text(
+                    '68029 ',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: Text(
+                    'Ha',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(7.0),
+            child: Row(
+              children: const [
+                Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: Text(
+                    'Available Fertilizers',
+                    style: TextStyle(
+                        fontSize: 18.0,
+                        fontFamily: 'MontSerrat',
+                        fontWeight: FontWeight.bold,
+                        color: Color.fromARGB(255, 240, 226, 35)),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: Text(
+                    '733568 ',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(7.0),
+                  child: Text(
+                    'Tones',
+                    style: TextStyle(fontSize: 18.0),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
+  );
 }

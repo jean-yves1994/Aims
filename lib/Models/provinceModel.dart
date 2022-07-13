@@ -20,8 +20,8 @@ class Province {
 }
 
 class ProvinceData {
-  int? id;
-  String? name;
+  final int? id;
+  final String? name;
 
   ProvinceData({this.id, this.name});
 

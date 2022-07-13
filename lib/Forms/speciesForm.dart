@@ -22,7 +22,7 @@ class _SpeciesFormScreen extends State<SpeciesFormScreen> {
 
     String? selectedValue;
     return Scaffold(
-      drawer:  NavigationDrawer(),
+      drawer: NavigationDrawer(),
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(60.0),
         child: AppBar(
@@ -49,265 +49,201 @@ class _SpeciesFormScreen extends State<SpeciesFormScreen> {
         ),
       ),
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Column(
-          children: [
-            Expanded(
-              child: Container(
-                width: ScreenUtil().screenWidth,
-                decoration: const BoxDecoration(
-                  color: Colors.white,
-                ),
-                child: Padding(
-                  padding: EdgeInsets.only(
-                      top: 0.2.w, bottom: 3.w, right: 8.w, left: 8.w),
-                  child: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        SizedBox(
-                          height: 35.h,
+      body: SingleChildScrollView(
+        child: Container(
+          margin: EdgeInsets.all(8),
+          child: Column(
+            children: [
+              SizedBox(
+                height: 25,
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Farmer ID'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
                         ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Farmer ID',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Species Name',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Farmer Firstname',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Species Category',
-                                    suffixIcon:
-                                        Icon(Icons.arrow_drop_down, size: 24),
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Farmer\'s Lastname',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Province',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Latitude',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'District',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        Row(
-                          children: [
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  //controller: _emailController,
-                                  decoration: InputDecoration(
-                                    /* hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ), */
-                                    labelText: 'Longitude',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: TextField(
-                                  // controller: _passwordController,
-                                  decoration: InputDecoration(
-                                    hintStyle: TextStyle(
-                                      fontSize: 14.sp,
-                                      color: const Color(0xFF414041),
-                                    ),
-                                    labelText: 'Number of Species',
-                                    labelStyle: TextStyle(
-                                      fontSize: 15.sp,
-                                      color: AppColors.myGreen,
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-
-                        SizedBox(
-                          height: 15.h,
-                        ),
-                        // elevated button
-                        customButton(
-                          "Submit",
-                          () {
-                            //signIn method call
-                            /*  Navigator.push(
-                                context,
-                                CupertinoPageRoute(
-                                    builder: (context) =>
-                                        const BottomNavController())); */
-                          },
-                        ),
-                      ],
+                      ),
                     ),
-                  ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Category'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Scientific Name'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Number of Species'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Farmer First Name'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Farmer Last Name'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Province'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('District'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Longitude'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                    new Flexible(
+                      child: new TextField(
+                        decoration: InputDecoration(
+                          border: OutlineInputBorder(),
+                          label: Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Text('Latitude'),
+                          ),
+                          contentPadding: EdgeInsets.symmetric(vertical: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+
+              // elevated button
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: customButton(
+                  "Submit",
+                  () {},
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
